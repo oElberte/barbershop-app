@@ -35,5 +35,19 @@ final userRepositoryProvider = Provider<UserRepository>.internal(
 );
 
 typedef UserRepositoryRef = ProviderRef<UserRepository>;
+String _$userServiceHash() => r'e369d098ce49ba0d8272a73a230a8f2f1824acbe';
+
+/// See also [userService].
+@ProviderFor(userService)
+final userServiceProvider = Provider<UserService>.internal(
+  userService,
+  name: r'userServiceProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$userServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserServiceRef = ProviderRef<UserService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
