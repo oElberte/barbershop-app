@@ -35,8 +35,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginStateStatus.initial:
           break;
         case LoginStateStatus.admLogin:
+          Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
           break;
         case LoginStateStatus.employeeLogin:
+          Navigator.of(context).pushNamedAndRemoveUntil('/home/employee', (route) => false);
           break;
         case LoginStateStatus.failure:
           Messages.showError(state.errorMessage ?? 'Ocorreu um erro', context);
