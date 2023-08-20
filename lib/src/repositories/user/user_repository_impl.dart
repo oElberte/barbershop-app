@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:dw_barbershop/src/core/exceptions/auth_exception.dart';
 import 'package:dw_barbershop/src/core/exceptions/repository_exception.dart';
 import 'package:dw_barbershop/src/core/fp/either.dart';
+import 'package:dw_barbershop/src/core/fp/nil.dart';
 import 'package:dw_barbershop/src/core/rest_client/rest_client.dart';
 import 'package:dw_barbershop/src/models/user_model.dart';
 
@@ -50,6 +51,30 @@ class UserRepositoryImpl implements UserRepository {
     } on ArgumentError catch (e, s) {
       log('Invalid Json', error: e, stackTrace: s);
       return Failure(RepositoryException(e.message));
+    }
+  }
+
+  @override
+  Future<Either<RepositoryException, Nil>> registerAdmin(
+    ({
+      String email,
+      String name,
+      String password,
+    }) userData,
+  ) async {
+    try {
+      await restClient.unAuth.post('/users', data: {
+        'name': userData.name,
+        'email': userData.email,
+        'password': userData.password,
+        'profile': 'ADM',
+      });
+
+      return Success(nil);
+    } on DioException catch (e, s) {
+      const errorMessage = 'Erro ao registrar usuário administrador';
+      log(errorMessage, error: e, stackTrace: s);
+      return Failure(RepositoryException(errorMessage));
     }
   }
 }

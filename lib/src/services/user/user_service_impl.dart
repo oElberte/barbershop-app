@@ -29,4 +29,22 @@ class UserServiceImpl implements UserService {
         return Success(nil);
     }
   }
+
+  @override
+  Future<Either<ServiceException, Nil>> registerAdmin(
+    ({
+      String email,
+      String name,
+      String password,
+    }) userData,
+  ) async {
+    final registerResult = await userRepository.registerAdmin(userData);
+
+    switch (registerResult) {
+      case Failure(:final exception):
+        return Failure(ServiceException(exception.message));
+      case Success():
+        return login(userData.email, userData.password);
+    }
+  }
 }
