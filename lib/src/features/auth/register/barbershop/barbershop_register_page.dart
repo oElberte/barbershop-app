@@ -1,5 +1,9 @@
+import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/weekdays_panel.dart';
+import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_state.dart';
+import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -25,6 +29,19 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
 
   @override
   Widget build(BuildContext context) {
+    final barbershopRegisterVm = ref.watch(barbershopRegisterVmProvider.notifier);
+
+    ref.listen(barbershopRegisterVmProvider, (_, state) {
+      switch (state.status) {
+        case BarbershopRegisterStateStatus.initial:
+          break;
+        case BarbershopRegisterStateStatus.success:
+          Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
+        case BarbershopRegisterStateStatus.error:
+          Messages.showError('Erro ao registrar barbearia', context);
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastrar estabelecimento'),
@@ -40,6 +57,7 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                   height: 5,
                 ),
                 TextFormField(
+                  onTapOutside: context.unfocus,
                   controller: nameEC,
                   validator: Validatorless.required('Nome obrigatório'),
                   decoration: const InputDecoration(
@@ -50,6 +68,7 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                   height: 24,
                 ),
                 TextFormField(
+                  onTapOutside: context.unfocus,
                   controller: emailEC,
                   validator: Validatorless.multiple([
                     Validatorless.required('E-mail obrigatório'),
@@ -62,13 +81,16 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                 const SizedBox(
                   height: 24,
                 ),
-                const WeekdaysPanel(),
+                WeekdaysPanel(
+                  onDayTapped: (day) => barbershopRegisterVm.addOrRemoveOpenDay(day),
+                ),
                 const SizedBox(
                   height: 24,
                 ),
-                const HoursPanel(
+                HoursPanel(
                   startTime: 6,
                   endTime: 23,
+                  onHourTapped: (hour) => barbershopRegisterVm.addOrRemoveOpenHour(hour),
                 ),
                 const SizedBox(
                   height: 24,
@@ -77,7 +99,17 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(56),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    switch (formKey.currentState?.validate()) {
+                      case null || false:
+                        Messages.showError('Formulário inválido', context);
+                      case true:
+                        barbershopRegisterVm.register(
+                          name: nameEC.text,
+                          email: emailEC.text,
+                        );
+                    }
+                  },
                   child: const Text('CADASTRAR ESTABELECIMENTO'),
                 ),
               ],

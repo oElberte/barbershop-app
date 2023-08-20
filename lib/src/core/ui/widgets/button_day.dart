@@ -1,32 +1,47 @@
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 import 'package:flutter/material.dart';
 
-class ButtonDay extends StatelessWidget {
-  const ButtonDay({super.key, required this.label});
+class ButtonDay extends StatefulWidget {
+  const ButtonDay({super.key, required this.label, required this.onDayTapped});
 
   final String label;
+  final ValueChanged<String> onDayTapped;
+
+  @override
+  State<ButtonDay> createState() => _ButtonDayState();
+}
+
+class _ButtonDayState extends State<ButtonDay> {
+  var isSelected = false;
 
   @override
   Widget build(BuildContext context) {
+    final textColor = isSelected ? Colors.white : ColorsConstants.grey;
+    var buttonColor = isSelected ? ColorsConstants.brown : Colors.white;
+    final buttonBorderColor = isSelected ? ColorsConstants.brown : ColorsConstants.grey;
+
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
-        onTap: () {},
+        onTap: () => setState(() {
+          isSelected = !isSelected;
+          widget.onDayTapped(widget.label);
+        }),
         child: Container(
           width: 40,
           height: 56,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: Colors.white,
-            border: Border.all(color: ColorsConstants.grey),
+            color: buttonColor,
+            border: Border.all(color: buttonBorderColor),
           ),
           child: Center(
             child: Text(
-              label,
-              style: const TextStyle(
+              widget.label,
+              style: TextStyle(
                 fontSize: 12,
-                color: ColorsConstants.grey,
+                color: textColor,
                 fontWeight: FontWeight.w500,
               ),
             ),
