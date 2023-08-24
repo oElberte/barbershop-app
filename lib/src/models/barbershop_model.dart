@@ -19,15 +19,15 @@ class BarbershopModel {
         'id': int id,
         'name': String name,
         'email': String email,
-        'opening_days': final List<String> openingDays,
-        'opening_hours': final List<int> openingHours,
+        'opening_days': final List openingDays,
+        'opening_hours': final List openingHours,
       } =>
         BarbershopModel(
           id: id,
           name: name,
           email: email,
-          openingDays: openingDays,
-          openingHours: openingHours,
+          openingDays: openingDays.cast<String>(),
+          openingHours: openingHours.cast<int>(),
         ),
       _ => throw ArgumentError('Invalid Json'),
     };

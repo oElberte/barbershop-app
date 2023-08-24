@@ -1,5 +1,6 @@
 import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/rest_client/rest_client.dart';
+import 'package:dw_barbershop/src/core/ui/barbershop_nav_global_key.dart';
 import 'package:dw_barbershop/src/models/barbershop_model.dart';
 import 'package:dw_barbershop/src/models/user_model.dart';
 import 'package:dw_barbershop/src/repositories/barbershop/barbershop_repository.dart';
@@ -8,7 +9,9 @@ import 'package:dw_barbershop/src/repositories/user/user_repository.dart';
 import 'package:dw_barbershop/src/repositories/user/user_repository_impl.dart';
 import 'package:dw_barbershop/src/services/user/user_service.dart';
 import 'package:dw_barbershop/src/services/user/user_service_impl.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'application_providers.g.dart';
 
@@ -33,7 +36,7 @@ Future<UserModel> getMe(GetMeRef ref) async {
 
 @Riverpod(keepAlive: true)
 BarbershopRepository barbershopRepository(BarbershopRepositoryRef ref) =>
-    BarbershopRepositoryImpl(restClient: ref.read(restClientProvider));
+    BarbershopRepositoryImpl(restClient: ref.watch(restClientProvider));
 
 @Riverpod(keepAlive: true)
 Future<BarbershopModel> getMyBarbershop(GetMyBarbershopRef ref) async {
@@ -45,4 +48,17 @@ Future<BarbershopModel> getMyBarbershop(GetMyBarbershopRef ref) async {
     Success(value: final barbershop) => barbershop,
     Failure(:final exception) => throw exception,
   };
+}
+
+@riverpod
+Future<void> logout(LogoutRef ref) async {
+  final sp = await SharedPreferences.getInstance();
+  await sp.clear();
+
+  ref.invalidate(getMeProvider);
+  ref.invalidate(getMyBarbershopProvider);
+  Navigator.of(BarbershopNavGlobalKey.instance.navKey.currentContext!).pushNamedAndRemoveUntil(
+    '/auth/login',
+    (route) => false,
+  );
 }

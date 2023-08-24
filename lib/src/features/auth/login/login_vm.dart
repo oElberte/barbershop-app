@@ -37,12 +37,10 @@ class LoginVm extends _$LoginVm {
             state = state.copyWith(
               status: LoginStateStatus.admLogin,
             );
-            break;
           case UserModelEmployee():
             state = state.copyWith(
               status: LoginStateStatus.employeeLogin,
             );
-            break;
         }
     }
 
