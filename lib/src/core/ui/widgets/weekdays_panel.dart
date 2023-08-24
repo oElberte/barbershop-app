@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class WeekdaysPanel extends StatelessWidget {
   const WeekdaysPanel({
     super.key,
+    this.enabledDays,
     required this.onDayTapped,
   });
 
+  final List<String>? enabledDays;
   final ValueChanged<String> onDayTapped;
 
   @override
@@ -31,13 +33,41 @@ class WeekdaysPanel extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ButtonDay(label: 'Seg', onDayTapped: onDayTapped),
-                ButtonDay(label: 'Ter', onDayTapped: onDayTapped),
-                ButtonDay(label: 'Qua', onDayTapped: onDayTapped),
-                ButtonDay(label: 'Qui', onDayTapped: onDayTapped),
-                ButtonDay(label: 'Sex', onDayTapped: onDayTapped),
-                ButtonDay(label: 'Sáb', onDayTapped: onDayTapped),
-                ButtonDay(label: 'Dom', onDayTapped: onDayTapped),
+                ButtonDay(
+                  label: 'Seg',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
+                ButtonDay(
+                  label: 'Ter',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
+                ButtonDay(
+                  label: 'Qua',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
+                ButtonDay(
+                  label: 'Qui',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
+                ButtonDay(
+                  label: 'Sex',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
+                ButtonDay(
+                  label: 'Sab',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
+                ButtonDay(
+                  label: 'Dom',
+                  onDayTapped: onDayTapped,
+                  enabledDays: enabledDays,
+                ),
               ],
             ),
           ),
