@@ -114,7 +114,6 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                     minimumSize: const Size.fromHeight(56),
                   ),
                   onPressed: () {
-                    print('aqui ${formKey.currentState?.validate()}');
                     switch (formKey.currentState?.validate()) {
                       case null || false:
                         Messages.showError('Formulário inválido', context);
