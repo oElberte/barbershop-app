@@ -40,6 +40,9 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 24,
+          ),
           Text(
             name,
             style: const TextStyle(
