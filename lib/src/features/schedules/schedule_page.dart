@@ -52,7 +52,6 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
 
     ref.listen(scheduleVmProvider.select((state) => state.status), (_, status) {
       switch (status) {
-        //TODO: Day 5 - Part 2 - 0:18:00
         case ScheduleStateStatus.initial:
           break;
         case ScheduleStateStatus.success:

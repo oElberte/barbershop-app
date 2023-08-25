@@ -11,6 +11,7 @@ import 'package:dw_barbershop/src/features/home/adm/home_adm_page.dart';
 import 'package:dw_barbershop/src/features/schedules/schedule_page.dart';
 import 'package:dw_barbershop/src/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class BarbershopApp extends StatelessWidget {
   const BarbershopApp({super.key});
@@ -25,6 +26,13 @@ class BarbershopApp extends StatelessWidget {
           theme: BarbershopTheme.themeData,
           navigatorObservers: [asyncNavigatorObserver],
           navigatorKey: BarbershopNavGlobalKey.instance.navKey,
+          locale: const Locale('pt', 'BR'),
+          supportedLocales: const [Locale('pt', 'BR')],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
           routes: {
             '/': (_) => const SplashPage(),
             '/auth/login': (_) => const LoginPage(),
