@@ -1,6 +1,6 @@
-import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/features/auth/register/user/user_register_vm.dart';
+import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/features/auth/register/user/user_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -35,9 +35,11 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
         case UserRegisterStateStatus.initial:
           break;
         case UserRegisterStateStatus.success:
-          Navigator.of(context).pushNamedAndRemoveUntil('/auth/register/barbershop', (route) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/auth/register/barbershop', (route) => false);
         case UserRegisterStateStatus.error:
-          Messages.showError('Erro ao registrar usuário administrador', context);
+          Messages.showError(
+              'Erro ao registrar usuário administrador', context);
       }
     });
 
@@ -86,7 +88,8 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                   obscureText: true,
                   validator: Validatorless.multiple([
                     Validatorless.required('Senha obrigatória'),
-                    Validatorless.min(6, 'Senha deve ter no mínimo 6 caracteres'),
+                    Validatorless.min(
+                        6, 'Senha deve ter no mínimo 6 caracteres'),
                   ]),
                   decoration: const InputDecoration(
                     label: Text('Senha'),

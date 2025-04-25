@@ -1,11 +1,11 @@
 import 'dart:developer';
 
+import 'package:barbershop/src/core/exceptions/repository_exception.dart';
+import 'package:barbershop/src/core/fp/either.dart';
+import 'package:barbershop/src/core/fp/nil.dart';
+import 'package:barbershop/src/core/rest_client/rest_client.dart';
+import 'package:barbershop/src/models/schedule_model.dart';
 import 'package:dio/dio.dart';
-import 'package:dw_barbershop/src/core/exceptions/repository_exception.dart';
-import 'package:dw_barbershop/src/core/fp/either.dart';
-import 'package:dw_barbershop/src/core/fp/nil.dart';
-import 'package:dw_barbershop/src/core/rest_client/rest_client.dart';
-import 'package:dw_barbershop/src/models/schedule_model.dart';
 
 import './schedule_repository.dart';
 
@@ -49,12 +49,14 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
         int userId,
       }) filter) async {
     try {
-      final Response(:data) = await restClient.auth.get('/schedules', queryParameters: {
+      final Response(:data) =
+          await restClient.auth.get('/schedules', queryParameters: {
         'user_id': filter.userId,
         'date': filter.date.toIso8601String(),
       });
 
-      final schedules = data.map<ScheduleModel>((s) => ScheduleModel.fromMap(s)).toList();
+      final schedules =
+          data.map<ScheduleModel>((s) => ScheduleModel.fromMap(s)).toList();
       return Success(schedules);
     } on DioException catch (e, s) {
       const errorMessage = 'Erro ao buscar agendamentos';

@@ -1,4 +1,4 @@
-import 'package:dw_barbershop/src/core/ui/widgets/hour_button.dart';
+import 'package:barbershop/src/core/ui/widgets/hour_button.dart';
 import 'package:flutter/material.dart';
 
 class HoursPanel extends StatefulWidget {
@@ -33,7 +33,13 @@ class _HoursPanelState extends State<HoursPanel> {
 
   @override
   Widget build(BuildContext context) {
-    final HoursPanel(:singleSelection, :startTime, :endTime, :enabledHours, :onHourTapped) = widget;
+    final HoursPanel(
+      :singleSelection,
+      :startTime,
+      :endTime,
+      :enabledHours,
+      :onHourTapped
+    ) = widget;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

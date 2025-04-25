@@ -1,13 +1,13 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:barbershop/src/core/exceptions/auth_exception.dart';
+import 'package:barbershop/src/core/exceptions/repository_exception.dart';
+import 'package:barbershop/src/core/fp/either.dart';
+import 'package:barbershop/src/core/fp/nil.dart';
+import 'package:barbershop/src/core/rest_client/rest_client.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:dio/dio.dart';
-import 'package:dw_barbershop/src/core/exceptions/auth_exception.dart';
-import 'package:dw_barbershop/src/core/exceptions/repository_exception.dart';
-import 'package:dw_barbershop/src/core/fp/either.dart';
-import 'package:dw_barbershop/src/core/fp/nil.dart';
-import 'package:dw_barbershop/src/core/rest_client/rest_client.dart';
-import 'package:dw_barbershop/src/models/user_model.dart';
 
 import './user_repository.dart';
 
@@ -17,7 +17,8 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({required this.restClient});
 
   @override
-  Future<Either<AuthException, String>> login(String email, String password) async {
+  Future<Either<AuthException, String>> login(
+      String email, String password) async {
     try {
       final Response(:data) = await restClient.unAuth.post(
         '/auth',
@@ -79,7 +80,8 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<RepositoryException, List<UserModel>>> getEmployees(int barbershopId) async {
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+      int barbershopId) async {
     try {
       final Response(:List data) = await restClient.auth.get(
         '/users',
@@ -124,7 +126,8 @@ class UserRepositoryImpl implements UserRepository {
 
       return Success(nil);
     } on DioException catch (e, s) {
-      const errorMessage = 'Erro ao registrar usuário administrador como colaborador';
+      const errorMessage =
+          'Erro ao registrar usuário administrador como colaborador';
       log(errorMessage, error: e, stackTrace: s);
       return Failure(RepositoryException(errorMessage));
     }
@@ -153,7 +156,8 @@ class UserRepositoryImpl implements UserRepository {
 
       return Success(nil);
     } on DioException catch (e, s) {
-      const errorMessage = 'Erro ao registrar usuário administrador como colaborador';
+      const errorMessage =
+          'Erro ao registrar usuário administrador como colaborador';
       log(errorMessage, error: e, stackTrace: s);
       return Failure(RepositoryException(errorMessage));
     }

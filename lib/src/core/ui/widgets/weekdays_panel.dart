@@ -1,4 +1,4 @@
-import 'package:dw_barbershop/src/core/ui/widgets/button_day.dart';
+import 'package:barbershop/src/core/ui/widgets/button_day.dart';
 import 'package:flutter/material.dart';
 
 class WeekdaysPanel extends StatelessWidget {

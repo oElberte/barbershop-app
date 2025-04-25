@@ -1,11 +1,11 @@
 import 'package:asyncstate/asyncstate.dart';
-import 'package:dw_barbershop/src/core/exceptions/repository_exception.dart';
-import 'package:dw_barbershop/src/core/fp/either.dart';
-import 'package:dw_barbershop/src/core/fp/nil.dart';
-import 'package:dw_barbershop/src/core/providers/application_providers.dart';
-import 'package:dw_barbershop/src/features/employee/register/employee_register_state.dart';
-import 'package:dw_barbershop/src/models/barbershop_model.dart';
-import 'package:dw_barbershop/src/repositories/user/user_repository.dart';
+import 'package:barbershop/src/core/exceptions/repository_exception.dart';
+import 'package:barbershop/src/core/fp/either.dart';
+import 'package:barbershop/src/core/fp/nil.dart';
+import 'package:barbershop/src/core/providers/application_providers.dart';
+import 'package:barbershop/src/features/employee/register/employee_register_state.dart';
+import 'package:barbershop/src/models/barbershop_model.dart';
+import 'package:barbershop/src/repositories/user/user_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'employee_register_vm.g.dart';
@@ -52,7 +52,8 @@ class EmployeeRegisterVm extends _$EmployeeRegisterVm {
 
     final asyncLoaderHandler = AsyncLoaderHandler()..start();
 
-    final UserRepository(:registerAdmAsEmployee, :registerEmployee) = ref.read(userRepositoryProvider);
+    final UserRepository(:registerAdmAsEmployee, :registerEmployee) =
+        ref.read(userRepositoryProvider);
 
     final Either<RepositoryException, Nil> resultRegister;
 
@@ -64,7 +65,8 @@ class EmployeeRegisterVm extends _$EmployeeRegisterVm {
 
       resultRegister = await registerAdmAsEmployee(dto);
     } else {
-      final BarbershopModel(:id) = await ref.read(getMyBarbershopProvider.future);
+      final BarbershopModel(:id) =
+          await ref.read(getMyBarbershopProvider.future);
       final dto = (
         barbershopId: id,
         name: name!,

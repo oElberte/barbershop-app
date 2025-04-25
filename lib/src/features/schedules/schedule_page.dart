@@ -1,12 +1,12 @@
-import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/avatar_widget.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
-import 'package:dw_barbershop/src/features/schedules/schedule_state.dart';
-import 'package:dw_barbershop/src/features/schedules/schedule_vm.dart';
-import 'package:dw_barbershop/src/features/schedules/widgets/schedule_calendar.dart';
-import 'package:dw_barbershop/src/models/user_model.dart';
+import 'package:barbershop/src/core/ui/barbershop_icons.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
+import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
+import 'package:barbershop/src/features/schedules/schedule_state.dart';
+import 'package:barbershop/src/features/schedules/schedule_vm.dart';
+import 'package:barbershop/src/features/schedules/widgets/schedule_calendar.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -161,13 +161,17 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                         case null || false:
                           Messages.showError('Dados incompletos', context);
                         case true:
-                          final hourSelected =
-                              ref.watch(scheduleVmProvider.select((state) => state.scheduleHour != null));
+                          final hourSelected = ref.watch(scheduleVmProvider
+                              .select((state) => state.scheduleHour != null));
 
                           if (hourSelected) {
-                            scheduleVm.register(userModel: userModel, clientName: clientEC.text);
+                            scheduleVm.register(
+                                userModel: userModel,
+                                clientName: clientEC.text);
                           } else {
-                            Messages.showError('Por favor selecione um horário de atendimento', context);
+                            Messages.showError(
+                                'Por favor selecione um horário de atendimento',
+                                context);
                           }
                       }
                     },

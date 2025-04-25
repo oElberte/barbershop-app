@@ -1,10 +1,10 @@
-import 'package:dw_barbershop/src/core/providers/application_providers.dart';
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/avatar_widget.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
-import 'package:dw_barbershop/src/features/home/employee/home_employee_provider.dart';
-import 'package:dw_barbershop/src/features/home/widgets/home_header.dart';
-import 'package:dw_barbershop/src/models/user_model.dart';
+import 'package:barbershop/src/core/providers/application_providers.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
+import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:barbershop/src/features/home/employee/home_employee_provider.dart';
+import 'package:barbershop/src/features/home/widgets/home_header.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -67,7 +67,8 @@ class HomeEmployeePage extends ConsumerWidget {
                           children: [
                             Consumer(
                               builder: (context, ref, child) {
-                                final totalAsync = ref.watch(getTotalSchedulesTodayProvider(id));
+                                final totalAsync = ref
+                                    .watch(getTotalSchedulesTodayProvider(id));
 
                                 return totalAsync.when(
                                   skipLoadingOnRefresh: false,
@@ -110,7 +111,8 @@ class HomeEmployeePage extends ConsumerWidget {
                           minimumSize: const Size.fromHeight(56),
                         ),
                         onPressed: () async {
-                          await Navigator.of(context).pushNamed('/schedule', arguments: user);
+                          await Navigator.of(context)
+                              .pushNamed('/schedule', arguments: user);
                           ref.invalidate(getTotalSchedulesTodayProvider);
                         },
                         child: const Text('AGENDAR CLIENTE'),
@@ -122,7 +124,8 @@ class HomeEmployeePage extends ConsumerWidget {
                         style: OutlinedButton.styleFrom(
                           minimumSize: const Size.fromHeight(56),
                         ),
-                        onPressed: () => Navigator.of(context).pushNamed('/employee/schedule', arguments: user),
+                        onPressed: () => Navigator.of(context)
+                            .pushNamed('/employee/schedule', arguments: user),
                         child: const Text('VER AGENDA'),
                       ),
                     ],

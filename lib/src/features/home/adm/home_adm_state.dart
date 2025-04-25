@@ -1,4 +1,4 @@
-import 'package:dw_barbershop/src/models/user_model.dart';
+import 'package:barbershop/src/models/user_model.dart';
 
 enum HomeAdmStateStatus {
   loaded,

@@ -1,5 +1,5 @@
 //Sealed classes cannot be instantiated
-import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
 import 'package:flutter/material.dart';
 
 sealed class BarbershopTheme {

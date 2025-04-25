@@ -1,14 +1,14 @@
 import 'dart:developer';
 
-import 'package:dw_barbershop/src/core/providers/application_providers.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/avatar_widget.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/weekdays_panel.dart';
-import 'package:dw_barbershop/src/features/employee/register/employee_register_state.dart';
-import 'package:dw_barbershop/src/features/employee/register/employee_register_vm.dart';
-import 'package:dw_barbershop/src/models/barbershop_model.dart';
+import 'package:barbershop/src/core/providers/application_providers.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
+import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
+import 'package:barbershop/src/core/ui/widgets/weekdays_panel.dart';
+import 'package:barbershop/src/features/employee/register/employee_register_state.dart';
+import 'package:barbershop/src/features/employee/register/employee_register_vm.dart';
+import 'package:barbershop/src/models/barbershop_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -17,7 +17,8 @@ class EmployeeRegisterPage extends ConsumerStatefulWidget {
   const EmployeeRegisterPage({super.key});
 
   @override
-  ConsumerState<EmployeeRegisterPage> createState() => _EmployeeRegisterPageState();
+  ConsumerState<EmployeeRegisterPage> createState() =>
+      _EmployeeRegisterPageState();
 }
 
 class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
@@ -40,7 +41,8 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
     final employeeRegisterVm = ref.watch(employeeRegisterVmProvider.notifier);
     final barbershopAsyncValue = ref.watch(getMyBarbershopProvider);
 
-    ref.listen(employeeRegisterVmProvider.select((state) => state.status), (_, status) {
+    ref.listen(employeeRegisterVmProvider.select((state) => state.status),
+        (_, status) {
       switch (status) {
         case EmployeeRegisterStateStatus.initial:
           break;
@@ -113,7 +115,9 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                             ),
                             TextFormField(
                               controller: nameEC,
-                              validator: registerAdm ? null : Validatorless.required('Nome obrigatório'),
+                              validator: registerAdm
+                                  ? null
+                                  : Validatorless.required('Nome obrigatório'),
                               decoration: const InputDecoration(
                                 label: Text('Nome'),
                               ),
@@ -126,7 +130,8 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                               validator: registerAdm
                                   ? null
                                   : Validatorless.multiple([
-                                      Validatorless.required('Email obrigatório'),
+                                      Validatorless.required(
+                                          'Email obrigatório'),
                                       Validatorless.email('Email inválido'),
                                     ]),
                               decoration: const InputDecoration(
@@ -142,8 +147,10 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                               validator: registerAdm
                                   ? null
                                   : Validatorless.multiple([
-                                      Validatorless.required('Senha obrigatória'),
-                                      Validatorless.min(6, 'Senha deve ter no mínimo 6 caracteres'),
+                                      Validatorless.required(
+                                          'Senha obrigatória'),
+                                      Validatorless.min(6,
+                                          'Senha deve ter no mínimo 6 caracteres'),
                                     ]),
                               decoration: const InputDecoration(
                                 label: Text('Senha'),
@@ -179,7 +186,8 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                       onPressed: () {
                         switch (formKey.currentState?.validate()) {
                           case false || null:
-                            Messages.showError('Existem campos inválidos', context);
+                            Messages.showError(
+                                'Existem campos inválidos', context);
                           case true:
                             final EmployeeRegisterState(
                               workDays: List(isNotEmpty: hasWorkDays),
@@ -198,7 +206,8 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                             final email = emailEC.text;
                             final password = passwordEC.text;
 
-                            employeeRegisterVm.register(name: name, email: email, password: password);
+                            employeeRegisterVm.register(
+                                name: name, email: email, password: password);
                         }
                       },
                       child: const Text('CADASTRAR COLABORADOR'),

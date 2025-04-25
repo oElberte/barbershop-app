@@ -1,8 +1,8 @@
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/features/auth/login/login_state.dart';
-import 'package:dw_barbershop/src/features/auth/login/login_vm.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/features/auth/login/login_state.dart';
+import 'package:barbershop/src/features/auth/login/login_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -35,10 +35,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginStateStatus.initial:
           break;
         case LoginStateStatus.admLogin:
-          Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/adm', (route) => false);
           break;
         case LoginStateStatus.employeeLogin:
-          Navigator.of(context).pushNamedAndRemoveUntil('/home/employee', (route) => false);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/employee', (route) => false);
           break;
         case LoginStateStatus.failure:
           Messages.showError(state.errorMessage ?? 'Ocorreu um erro', context);
@@ -83,7 +85,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             decoration: const InputDecoration(
                               label: Text('E-mail'),
                               hintText: 'E-mail',
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
                               hintStyle: TextStyle(color: Colors.black),
                               labelStyle: TextStyle(color: Colors.black),
                             ),
@@ -95,14 +98,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             onTapOutside: context.unfocus,
                             validator: Validatorless.multiple([
                               Validatorless.required('Senha obrigatória'),
-                              Validatorless.min(6, 'Senha deve conter no mínimo 6 caracteres'),
+                              Validatorless.min(6,
+                                  'Senha deve conter no mínimo 6 caracteres'),
                             ]),
                             obscureText: true,
                             controller: passwordEC,
                             decoration: const InputDecoration(
                               label: Text('Senha'),
                               hintText: 'Senha',
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
                               hintStyle: TextStyle(color: Colors.black),
                               labelStyle: TextStyle(color: Colors.black),
                             ),
@@ -130,7 +135,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             onPressed: () {
                               switch (formKey.currentState?.validate()) {
                                 case (false || null):
-                                  Messages.showError('Campos inválidos', context);
+                                  Messages.showError(
+                                      'Campos inválidos', context);
                                   break;
                                 case true:
                                   login(emailEC.text, passwordEC.text);
@@ -143,7 +149,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: InkWell(
-                          onTap: () => Navigator.of(context).pushNamed('/auth/register/user'),
+                          onTap: () => Navigator.of(context)
+                              .pushNamed('/auth/register/user'),
                           child: const Text(
                             'Criar conta',
                             style: TextStyle(

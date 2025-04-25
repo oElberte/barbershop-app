@@ -1,5 +1,5 @@
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 

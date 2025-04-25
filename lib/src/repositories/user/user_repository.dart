@@ -1,8 +1,8 @@
-import 'package:dw_barbershop/src/core/exceptions/auth_exception.dart';
-import 'package:dw_barbershop/src/core/exceptions/repository_exception.dart';
-import 'package:dw_barbershop/src/core/fp/either.dart';
-import 'package:dw_barbershop/src/core/fp/nil.dart';
-import 'package:dw_barbershop/src/models/user_model.dart';
+import 'package:barbershop/src/core/exceptions/auth_exception.dart';
+import 'package:barbershop/src/core/exceptions/repository_exception.dart';
+import 'package:barbershop/src/core/fp/either.dart';
+import 'package:barbershop/src/core/fp/nil.dart';
+import 'package:barbershop/src/models/user_model.dart';
 
 abstract interface class UserRepository {
   Future<Either<AuthException, String>> login(String email, String password);
@@ -15,7 +15,8 @@ abstract interface class UserRepository {
     }) userData,
   );
 
-  Future<Either<RepositoryException, List<UserModel>>> getEmployees(int barbershopId);
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+      int barbershopId);
 
   Future<Either<RepositoryException, Nil>> registerAdmAsEmployee(
       ({

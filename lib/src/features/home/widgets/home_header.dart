@@ -1,8 +1,8 @@
-import 'package:dw_barbershop/src/core/providers/application_providers.dart';
-import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
-import 'package:dw_barbershop/src/features/home/adm/home_adm_vm.dart';
+import 'package:barbershop/src/core/providers/application_providers.dart';
+import 'package:barbershop/src/core/ui/barbershop_icons.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:barbershop/src/features/home/adm/home_adm_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -71,7 +71,8 @@ class HomeHeader extends ConsumerWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () => ref.read(homeAdmVmProvider.notifier).logout(),
+                    onPressed: () =>
+                        ref.read(homeAdmVmProvider.notifier).logout(),
                     icon: const Icon(
                       BarbershopIcons.exit,
                       color: ColorsConstants.brown,

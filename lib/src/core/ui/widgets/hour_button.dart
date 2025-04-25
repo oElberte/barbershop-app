@@ -1,4 +1,4 @@
-import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
 import 'package:flutter/material.dart';
 
 class HourButton extends StatefulWidget {
@@ -28,7 +28,14 @@ class _HourButtonState extends State<HourButton> {
 
   @override
   Widget build(BuildContext context) {
-    final HourButton(:value, :label, :enabledHours, :onHourTapped, :singleSelection, :hourSelected) = widget;
+    final HourButton(
+      :value,
+      :label,
+      :enabledHours,
+      :onHourTapped,
+      :singleSelection,
+      :hourSelected
+    ) = widget;
 
     if (singleSelection) {
       if (hourSelected != null) {
@@ -42,7 +49,8 @@ class _HourButtonState extends State<HourButton> {
 
     final textColor = isSelected ? Colors.white : ColorsConstants.grey;
     var buttonColor = isSelected ? ColorsConstants.brown : Colors.white;
-    final buttonBorderColor = isSelected ? ColorsConstants.brown : ColorsConstants.grey;
+    final buttonBorderColor =
+        isSelected ? ColorsConstants.brown : ColorsConstants.grey;
 
     final disabledHour = enabledHours != null && !enabledHours.contains(value);
 

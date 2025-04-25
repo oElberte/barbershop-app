@@ -1,9 +1,9 @@
-import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
-import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/weekdays_panel.dart';
-import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_state.dart';
-import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
+import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
+import 'package:barbershop/src/core/ui/widgets/weekdays_panel.dart';
+import 'package:barbershop/src/features/auth/register/barbershop/barbershop_register_state.dart';
+import 'package:barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -12,10 +12,12 @@ class BarbershopRegisterPage extends ConsumerStatefulWidget {
   const BarbershopRegisterPage({super.key});
 
   @override
-  ConsumerState<BarbershopRegisterPage> createState() => _BarbershopRegisterPageState();
+  ConsumerState<BarbershopRegisterPage> createState() =>
+      _BarbershopRegisterPageState();
 }
 
-class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage> {
+class _BarbershopRegisterPageState
+    extends ConsumerState<BarbershopRegisterPage> {
   final formKey = GlobalKey<FormState>();
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();
@@ -29,14 +31,16 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
 
   @override
   Widget build(BuildContext context) {
-    final barbershopRegisterVm = ref.watch(barbershopRegisterVmProvider.notifier);
+    final barbershopRegisterVm =
+        ref.watch(barbershopRegisterVmProvider.notifier);
 
     ref.listen(barbershopRegisterVmProvider, (_, state) {
       switch (state.status) {
         case BarbershopRegisterStateStatus.initial:
           break;
         case BarbershopRegisterStateStatus.success:
-          Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/adm', (route) => false);
         case BarbershopRegisterStateStatus.error:
           Messages.showError('Erro ao registrar barbearia', context);
       }
@@ -82,7 +86,8 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                   height: 24,
                 ),
                 WeekdaysPanel(
-                  onDayTapped: (day) => barbershopRegisterVm.addOrRemoveOpenDay(day),
+                  onDayTapped: (day) =>
+                      barbershopRegisterVm.addOrRemoveOpenDay(day),
                 ),
                 const SizedBox(
                   height: 24,
@@ -90,7 +95,8 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                 HoursPanel(
                   startTime: 6,
                   endTime: 23,
-                  onHourTapped: (hour) => barbershopRegisterVm.addOrRemoveOpenHour(hour),
+                  onHourTapped: (hour) =>
+                      barbershopRegisterVm.addOrRemoveOpenHour(hour),
                 ),
                 const SizedBox(
                   height: 24,

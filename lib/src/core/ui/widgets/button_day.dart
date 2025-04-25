@@ -1,4 +1,4 @@
-import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
 import 'package:flutter/material.dart';
 
 class ButtonDay extends StatefulWidget {
@@ -24,7 +24,8 @@ class _ButtonDayState extends State<ButtonDay> {
   Widget build(BuildContext context) {
     final textColor = isSelected ? Colors.white : ColorsConstants.grey;
     var buttonColor = isSelected ? ColorsConstants.brown : Colors.white;
-    final buttonBorderColor = isSelected ? ColorsConstants.brown : ColorsConstants.grey;
+    final buttonBorderColor =
+        isSelected ? ColorsConstants.brown : ColorsConstants.grey;
 
     final ButtonDay(:enabledDays, :label, :onDayTapped) = widget;
 

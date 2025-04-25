@@ -1,5 +1,5 @@
-import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
-import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/barbershop_icons.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
 import 'package:flutter/material.dart';
 
 class AvatarWidget extends StatelessWidget {

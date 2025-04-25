@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
-import 'package:dw_barbershop/src/features/employee/schedule/appointment_ds.dart';
-import 'package:dw_barbershop/src/features/employee/schedule/employee_schedule_vm.dart';
-import 'package:dw_barbershop/src/models/user_model.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:barbershop/src/features/employee/schedule/appointment_ds.dart';
+import 'package:barbershop/src/features/employee/schedule/employee_schedule_vm.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +14,8 @@ class EmployeeSchedulePage extends ConsumerStatefulWidget {
   const EmployeeSchedulePage({super.key});
 
   @override
-  ConsumerState<EmployeeSchedulePage> createState() => _EmployeeSchedulePageState();
+  ConsumerState<EmployeeSchedulePage> createState() =>
+      _EmployeeSchedulePageState();
 }
 
 class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
@@ -30,9 +31,11 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    final UserModel(id: userId, :name) = ModalRoute.of(context)!.settings.arguments as UserModel;
+    final UserModel(id: userId, :name) =
+        ModalRoute.of(context)!.settings.arguments as UserModel;
 
-    final scheduleAsync = ref.watch(employeeScheduleVmProvider(userId, dateSelected));
+    final scheduleAsync =
+        ref.watch(employeeScheduleVmProvider(userId, dateSelected));
 
     return Scaffold(
       appBar: AppBar(
@@ -80,13 +83,17 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
                       return;
                     }
 
-                    ref.read(employeeScheduleVmProvider(userId, dateSelected).notifier).changeDate(
+                    ref
+                        .read(employeeScheduleVmProvider(userId, dateSelected)
+                            .notifier)
+                        .changeDate(
                           userId,
                           viewChangedDetails.visibleDates.first,
                         );
                   },
                   onTap: (tapDetails) {
-                    if (tapDetails.appointments != null && tapDetails.appointments!.isNotEmpty) {
+                    if (tapDetails.appointments != null &&
+                        tapDetails.appointments!.isNotEmpty) {
                       showModalBottomSheet(
                         context: context,
                         builder: (context) {
@@ -98,8 +105,10 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('Cliente: ${tapDetails.appointments!.first.subject}'),
-                                  Text('Horário: ${dateFormat.format(tapDetails.date ?? DateTime.now())}'),
+                                  Text(
+                                      'Cliente: ${tapDetails.appointments!.first.subject}'),
+                                  Text(
+                                      'Horário: ${dateFormat.format(tapDetails.date ?? DateTime.now())}'),
                                 ],
                               ),
                             ),

@@ -1,10 +1,10 @@
-name: dw_barbershop
+name: barbershop
 description: A new Flutter project.
-publish_to: 'none' 
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
   flutter:
@@ -35,15 +35,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  
+
   assets:
     - assets/images/
 
   fonts:
-    - family: dw_barbershop_icons
+    - family: barbershop_icons
       fonts:
-        - asset: assets/fonts/dw_barbershop_icons.ttf
-    
+        - asset: assets/fonts/barbershop_icons.ttf
+
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins/Poppins-Italic.ttf

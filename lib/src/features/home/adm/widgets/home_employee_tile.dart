@@ -1,6 +1,6 @@
-import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
-import 'package:dw_barbershop/src/core/ui/constants.dart';
-import 'package:dw_barbershop/src/models/user_model.dart';
+import 'package:barbershop/src/core/ui/barbershop_icons.dart';
+import 'package:barbershop/src/core/ui/constants.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeEmployeeTile extends StatelessWidget {
@@ -58,14 +58,16 @@ class HomeEmployeeTile extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                       ),
-                      onPressed: () => Navigator.of(context).pushNamed('/schedule', arguments: employee),
+                      onPressed: () => Navigator.of(context)
+                          .pushNamed('/schedule', arguments: employee),
                       child: const Text('AGENDAR'),
                     ),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                       ),
-                      onPressed: () => Navigator.of(context).pushNamed('/employee/schedule', arguments: employee),
+                      onPressed: () => Navigator.of(context)
+                          .pushNamed('/employee/schedule', arguments: employee),
                       child: const Text('VER AGENDA'),
                     ),
                     const Icon(
