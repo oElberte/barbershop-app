@@ -1,3 +1,3 @@
-# Imersão Dart Week 11 - Barbershop
+# Barbershop App
 
-Aplicativo para administração de barbearias feito durante a décima primeira edição da Imersão Dart Week ministrada pelo Rodrigo Rahman da Academia do Flutter.
+Aplicativo para administração de barbearias, que pode ser utilizado por barbeiros ou clientes.
