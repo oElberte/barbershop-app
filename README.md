@@ -99,3 +99,32 @@ lib/
 ## 🔒 Authentication
 
 The app uses a token-based authentication system with secure storage of credentials.
+
+## 📸 Screenshots
+
+### Administrator View
+
+The administrator interface allows barbershop owners to manage their business efficiently.
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: flex-start;">
+    <img src="screenshots/adm_01.png" width="200" alt="Admin Dashboard">
+    <img src="screenshots/adm_02.png" width="200" alt="Admin Management">
+    <img src="screenshots/adm_03.png" width="200" alt="Employee Overview">
+    <img src="screenshots/adm_04.png" width="200" alt="Schedule Management">
+    <img src="screenshots/adm_05.png" width="200" alt="Admin Calendar">
+    <img src="screenshots/adm_06.png" width="200" alt="Business Settings">
+    <img src="screenshots/adm_07.png" width="200" alt="Customer Management">
+    <img src="screenshots/adm_08.png" width="200" alt="Appointment Details">
+    <img src="screenshots/adm_09.png" width="200" alt="Analytics Dashboard">
+</div>
+
+### Collaborator/User View
+
+The user interface provides a seamless booking experience for customers.
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: flex-start;">
+    <img src="screenshots/colab_01.png" width="200" alt="User Dashboard">
+    <img src="screenshots/colab_03.png" width="200" alt="Booking Interface">
+    <img src="screenshots/colab_04.png" width="200" alt="Appointment Selection">
+    <img src="screenshots/colab_05.png" width="200" alt="Confirmation Screen">
+</div>
